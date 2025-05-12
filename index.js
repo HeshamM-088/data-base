@@ -5,6 +5,11 @@ require("dotenv").config();
 const { users_routes } = require("./routes/usersroutes");
 
 const app = express();
+
+app.use(cors());
+
+app.use(express.json());
+
 const DB = process.env.DB;
 
 mongoose
@@ -17,10 +22,9 @@ mongoose
   });
 
 //enable back end to read body data that sent from front end
-app.use(express.json());
 
 //fix any browsers cors problem
-app.use(cors());
+
 
 app.use("/api/users", users_routes);
 
